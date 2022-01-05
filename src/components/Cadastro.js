@@ -1,17 +1,39 @@
+import { useState } from 'react';
 import { Link } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 import Logo from '../assets/logo.png';
 
 export default function Cadastro(){
+
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [image, setImage] = useState('');
+    const [password, setPassword] = useState('');
+
+    function handleSignUp() {
+    
+        const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", {
+            email,
+            name,
+            image,
+            password
+        });
+    
+        promise.then(response => console.log(response.data));
+        promise.catch(error => console.log(error.response));
+    }
+
+
     return (
         <>
             <Container>
                 <img src={Logo}></img>
-                <Input type="email" placeholder="email"></Input>
-                <Input type="password" placeholder="senha"></Input>
-                <Input type="text" placeholder="nome"></Input>
-                <Input type="url" placeholder="foto"></Input>
-                <Button>Cadastrar</Button>
+                <Input type="email" placeholder="email" value={email} onChange={e => setEmail(e.target.value)}></Input>
+                <Input type="password" placeholder="senha" value={password} onChange={e => setPassword(e.target.value)}></Input>
+                <Input type="text" placeholder="nome" value={name} onChange={e => setName(e.target.value)}></Input>
+                <Input type="url" placeholder="foto" value={image} onChange={e => setImage(e.target.value)}></Input>
+                <Button onClick={handleSignUp}>Cadastrar</Button>
                 <StyledLink to="/">Já tem uma conta? Faça login!</StyledLink>
             </Container>
          </>
@@ -50,6 +72,7 @@ const Button = styled.button`
     border: none;
     border-radius: 4px;
     font-size: 21px;
+    cursor: pointer;
 `
 
 const StyledLink = styled(Link)`

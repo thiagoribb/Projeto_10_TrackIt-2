@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import bob from '../assets/bob.png';
 
 export default function Habitos(){
     return (
         <>
             <Header>
                 <Titulo>TrackIt</Titulo>
-                <img></img>
+                <img src={bob}></img>
             </Header>
             <Habits>
                 <p>Meus hábitos</p>
@@ -27,6 +28,9 @@ const Header = styled.div`
 const Titulo = styled.p`
     font-family: 'Playball', cursive;
     color: #fff;
+    font-size: 39px;
+    font-weight: 400;
+    
 `
 
 const Habits = styled.div`

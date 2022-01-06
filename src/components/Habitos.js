@@ -1,50 +1,99 @@
 import styled from "styled-components";
-import bob from '../assets/bob.png';
+import Header from "./Header";
+import Footer from "./Footer";
+import { useState } from "react/cjs/react.development";
 
 export default function Habitos(){
+
+    const [criarHabito, setCriarHabito] = useState();
+
     return (
         <>
-            <Header>
-                <Titulo>TrackIt</Titulo>
-                <img src={bob}></img>
-            </Header>
-            <Habits>
-                <p>Meus hábitos</p>
-                <Cadastrar>+</Cadastrar>
-            </Habits>
-            <div>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</div>
-            <Footer></Footer>
+            <Header/>
+            <Body>
+                <Habits>
+                    <Titulo>Meus hábitos</Titulo>
+                    <Button onClick={criarHabito}>+</Button>
+                </Habits>
+                <SubTitulo>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</SubTitulo>
+            </Body>
+            <Footer/>
         </>
     );
 }
 
-const Header = styled.div`
-    width: 375px;
-    height: 70px;
-    background-color: #126BA5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-`
+function criarHabito(){
+    return (
+        <Container>
+            <Habits>
+                <Titulo>Meus hábitos</Titulo>
+                <Button>+</Button>
+            </Habits>
 
-const Titulo = styled.p`
-    font-family: 'Playball', cursive;
-    color: #fff;
-    font-size: 39px;
-    font-weight: 400;
-    
+            <NovoHabito>
+
+            </NovoHabito>
+
+            <SubTitulo>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</SubTitulo>
+        </Container>
+    );
+}
+
+const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 `
 
 const Habits = styled.div`
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`
+const Titulo = styled.h2`
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 23px;
+    color: #126BA5;
+    padding-bottom: 17px;
 `
 
-const Cadastrar = styled.button`
+const SubTitulo = styled.h3`
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 28px;
+`
+
+const Button = styled.button`
+    font-family: 'Lexend Deca', sans-serif;
     width: 40px;
     height: 35px;
     background-color: #52B6FF;
+    color: #fff;
+    font-size: 27px;
+    border: none;
+    border-radius: 4.6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 `
 
-const Footer = styled.footer`
+const Body = styled.div`
     width: 375px;
-    height: 70px;
+    height: 100vh;
+    background-color: #E5E5E5;
+    padding-top: 98px;
+    padding-bottom: 70px;
+    padding-left: 17px;
+    padding-right: 18px;
+`
+
+const NovoHabito = styled.div`
+    width: 340px;
+    height: 180px;
     background-color: #fff;
 `

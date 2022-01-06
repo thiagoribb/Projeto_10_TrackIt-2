@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router';
 import styled from "styled-components";
 import axios from "axios";
 import Logo from '../assets/logo.png';
@@ -9,6 +10,7 @@ export default function Login(){
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     function handleLogin() {
     
@@ -17,10 +19,17 @@ export default function Login(){
           password
         });
     
-        promise.then(response => console.log(response.data));
-        promise.catch(error => console.log(error.response));
+        promise.then(response => navigate('/hoje'));
+        promise.catch(handleFailure);
     }
 
+    // function handleSuccess(){
+       
+    // }
+
+    function handleFailure(){
+        alert('Dados inválidos, tente novamente!');
+    }
 
     return (
             <Container>

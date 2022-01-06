@@ -1,31 +1,39 @@
+import { useState, useEffect } from 'react';
 import styled from "styled-components";
-import bob from '../assets/bob.png';
+import axios from "axios";
 import check from '../assets/check.png'
+import Header from './Header';
+import Footer from './Footer';
 
 export default function(){
+
+    const [habit, setHabit] = useState({});
+
+    useEffect(() => {
+		const promess = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits");
+		promess.then(response => {setHabit(response.data)});
+	}, []);
+
+
     return (
-        <>
-            <Container>
-                <Header>
-                    <Logo>TrackIt</Logo>
-                    <img src={bob}></img>
-                </Header>
-                <Body>
-                    <Titulo>Segunda, 17/05</Titulo>
-                    <SubTitulo>Nenhum hábito concluído ainda</SubTitulo>
-                    <Habitos>
-                        <div>
-                            <Habito>Ler 1 capítulo de livro</Habito>
-                            <P>Sequência atual: 3 dias</P>
-                            <P>Seu recorde: 5 dias</P>
-                        </div>
-                        <Check>
-                            <img src={check}></img>
-                        </Check>
-                    </Habitos>
-                </Body>
-            </Container>
-        </>
+        <Container>
+            <Header/>
+            <Body>
+                <Titulo>Segunda, 17/05</Titulo>
+                <SubTitulo>Nenhum hábito concluído ainda</SubTitulo>
+                <Habitos>
+                    <Texto>
+                        <Habito>Ler 1 capítulo de livro</Habito>
+                        <P>Sequência atual: 3 dias</P>
+                        <P>Seu recorde: 5 dias</P>
+                    </Texto>
+                    <Check>
+                        <img src={check}></img>
+                    </Check>
+                </Habitos>
+            </Body>
+            <Footer/>
+        </Container>
     );
 }
 
@@ -36,23 +44,12 @@ const Container = styled.div`
     flex-direction: column;
 `
 
-const Header = styled.div`
-    width: 375px;
-    height: 70px;
-    background-color: #126BA5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-`
-
-const Logo = styled.p`
-    font-family: 'Playball', cursive;
-    color: #fff;
-`
-
 const Body = styled.div`
     width: 375px;
     height: 100vh;
     background-color: #E5E5E5;
-    padding-top: 28px;
+    padding-top: 98px;
+    padding-bottom: 70px;
     padding-left: 17px;
 `
 
@@ -77,10 +74,15 @@ const Habitos = styled.div`
     height: 94px;
     background-color: #fff;
     border-radius: 5px;
+    padding-right: 13px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+`
+
+const Texto = styled.div`
+    padding-left: 15px;
 `
 
 const Habito = styled.p`
@@ -101,5 +103,8 @@ const Check = styled.div`
     width: 70px;
     height: 70px;
     background-color: #EBEBEB;
-    align-content: center;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `

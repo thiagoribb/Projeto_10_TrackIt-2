@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router';
 import axios from "axios";
 import styled from "styled-components";
 import Logo from '../assets/logo.png';
@@ -10,6 +11,7 @@ export default function Cadastro(){
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     function handleSignUp() {
     
@@ -20,10 +22,14 @@ export default function Cadastro(){
             password
         });
     
-        promise.then(response => console.log(response.data));
-        promise.catch(error => console.log(error.response));
+        promise.then(response => navigate('/'));
+        promise.catch(handleFailure);
     }
 
+    
+    function handleFailure(){
+        alert('Dados inválidos, tente novamente!');
+    }
 
     return (
         <>

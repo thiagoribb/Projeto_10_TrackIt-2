@@ -1,18 +1,17 @@
 import styled from "styled-components";
-import bob from '../assets/bob.png';
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Historico(){
     return (
         <>
             <Container>
-                <Header>
-                    <Logo>TrackIt</Logo>
-                    <img src={bob}></img>
-                </Header>
+                <Header/>
                 <Body>
                     <Titulo>Histórico</Titulo>
                     <SubTitulo>Em breve você poderá ver o histórico dos seus hábitos aqui!</SubTitulo>
                 </Body>
+                <Footer/>
             </Container>
         </>
     );
@@ -23,21 +22,6 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-`
-
-const Header = styled.div`
-    width: 375px;
-    height: 70px;
-    background-color: #126BA5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-
-`
-
-const Logo = styled.p`
-    font-family: 'Playball', cursive;
-    color: #fff;
-    font-size: 39px;
-    font-weight: 400;
 `
 
 const Body = styled.div`

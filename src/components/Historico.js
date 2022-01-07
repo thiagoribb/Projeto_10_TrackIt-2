@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Header from "./Header";
-import Footer from "./Footer";
+import Menu from "./Menu";
 
 export default function Historico(){
     return (
@@ -11,7 +11,7 @@ export default function Historico(){
                     <Titulo>Histórico</Titulo>
                     <SubTitulo>Em breve você poderá ver o histórico dos seus hábitos aqui!</SubTitulo>
                 </Body>
-                <Footer/>
+                <Menu/>
             </Container>
         </>
     );
@@ -28,7 +28,7 @@ const Body = styled.div`
     width: 375px;
     height: 100vh;
     background-color: #E5E5E5;
-    padding-top: 28px;
+    padding-top: 98px;
     padding-left: 17px;
 `
 

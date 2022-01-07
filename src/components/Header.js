@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import bob from '../assets/bob.png';
+import { useContext } from 'react';
+import UserContext from "../contexts/UserContext";
 
 export default function Header(){
+    const { token, setToken } = useContext(UserContext);
+
     return (
         <Head>
             <Logo>TrackIt</Logo>
-            <Image>
-                <img src={bob}></img>
-            </Image>
+            <Image src={token.image}></Image>
         </Head>
     );
 }
@@ -33,11 +34,9 @@ const Logo = styled.p`
     font-size: 39px;
 `
 
-const Image = styled.div`
-    img{
-    width: 51px;
-    width: 51px;
-    object-fit: contain;
-    border-radius: 100%;
-    }
+const Image = styled.img`
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
 `

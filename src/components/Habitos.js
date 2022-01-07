@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import Header from "./Header";
-import Footer from "./Footer";
-import { useState } from "react/cjs/react.development";
+import Menu from "./Menu";
+import { useState } from 'react';
 
 export default function Habitos(){
 
-    const [criarHabito, setCriarHabito] = useState();
+    const [habito, setHabito] = useState('');
+    //const [criarHabito, setCriarHabito] = useState();
 
     return (
         <>
@@ -13,31 +14,38 @@ export default function Habitos(){
             <Body>
                 <Habits>
                     <Titulo>Meus hábitos</Titulo>
-                    <Button onClick={criarHabito}>+</Button>
+                    <Plus>+</Plus>
                 </Habits>
+                <NovoHabito>
+                <Input type="text" placeholder="nome do hábito" value={habito} onChange={e => setHabito(e.target.value)}></Input>
+                <div>
+                    <Button>Cancelar</Button>
+                    <Button>Salvar</Button>
+                </div>
+                </NovoHabito>
                 <SubTitulo>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</SubTitulo>
             </Body>
-            <Footer/>
+            <Menu/>
         </>
     );
 }
 
-function criarHabito(){
-    return (
-        <Container>
-            <Habits>
-                <Titulo>Meus hábitos</Titulo>
-                <Button>+</Button>
-            </Habits>
+// function criarHabito(){
+//     return (
+//         <Container>
+//             <Habits>
+//                 <Titulo>Meus hábitos</Titulo>
+//                 <Button>+</Button>
+//             </Habits>
 
-            <NovoHabito>
+//             <NovoHabito>
 
-            </NovoHabito>
+//             </NovoHabito>
 
-            <SubTitulo>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</SubTitulo>
-        </Container>
-    );
-}
+//             <SubTitulo>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</SubTitulo>
+//         </Container>
+//     );
+// }
 
 const Container = styled.div`
     display: flex;
@@ -68,7 +76,7 @@ const SubTitulo = styled.h3`
     margin-bottom: 28px;
 `
 
-const Button = styled.button`
+const Plus = styled.button`
     font-family: 'Lexend Deca', sans-serif;
     width: 40px;
     height: 35px;
@@ -79,7 +87,8 @@ const Button = styled.button`
     border-radius: 4.6px;
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
+    cursor: pointer;    
 `
 
 const Body = styled.div`
@@ -96,4 +105,33 @@ const NovoHabito = styled.div`
     width: 340px;
     height: 180px;
     background-color: #fff;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+`
+
+const Input = styled.input`
+    width: 303px;
+    height: 45px;
+    border-radius: 5px;
+    border: 1px solid #D4D4D4;
+    outline: 0;
+
+    ::placeholder{
+        color: #DBDBDB;
+        padding-left: 10px;
+        font-size: 20px;
+        font-weight: 400;
+    }
+`
+
+const Button = styled.button`
+    background-color: #52B6FF;
+    color: #fff;
+    width: 303px;
+    height: 45px;
+    border: none;
+    border-radius: 4px;
+    font-size: 21px;
+    cursor: pointer;
 `

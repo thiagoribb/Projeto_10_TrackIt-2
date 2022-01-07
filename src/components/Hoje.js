@@ -3,9 +3,15 @@ import styled from "styled-components";
 import axios from "axios";
 import check from '../assets/check.png'
 import Header from './Header';
-import Footer from './Footer';
+import Footer from './Menu';
+import dayjs from "dayjs";
+import 'dayjs/locale/pt-br'
 
 export default function(){
+
+    let date = dayjs().locale('pt-br').format('dddd, DD/MM');
+
+    const [colorCheck, setColorCheck] = useState("#EBEBEB");
 
     const [habit, setHabit] = useState({});
 
@@ -19,7 +25,7 @@ export default function(){
         <Container>
             <Header/>
             <Body>
-                <Titulo>Segunda, 17/05</Titulo>
+                <Titulo>{date}</Titulo>
                 <SubTitulo>Nenhum hábito concluído ainda</SubTitulo>
                 <Habitos>
                     <Texto>
@@ -27,7 +33,7 @@ export default function(){
                         <P>Sequência atual: 3 dias</P>
                         <P>Seu recorde: 5 dias</P>
                     </Texto>
-                    <Check>
+                    <Check color={colorCheck} onClick={() => setColorCheck('#8FC549')}>
                         <img src={check}></img>
                     </Check>
                 </Habitos>
@@ -99,12 +105,14 @@ const P = styled.p`
     color: #666666;
 `
 
-const Check = styled.div`
+const Check = styled.button`
     width: 70px;
     height: 70px;
-    background-color: #EBEBEB;
+    background-color: ${props => props.color};
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    cursor: pointer;
 `

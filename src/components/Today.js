@@ -7,7 +7,7 @@ import Footer from './Menu';
 import dayjs from "dayjs";
 import 'dayjs/locale/pt-br'
 
-export default function(){
+export default function Today(){
 
     let date = dayjs().locale('pt-br').format('dddd, DD/MM');
 

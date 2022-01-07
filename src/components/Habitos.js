@@ -1,12 +1,40 @@
 import styled from "styled-components";
 import Header from "./Header";
 import Menu from "./Menu";
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import axios from "axios";
+import UserContext from "../contexts/UserContext";
 
 export default function Habitos(){
 
+    const { token } = useContext(UserContext);
+    const [loading, setLoading] = useState(false);
     const [habito, setHabito] = useState('');
-    //const [criarHabito, setCriarHabito] = useState();
+
+    const [newHabit, setNewHabit] = useState({
+        name: "",
+        days: []
+      })
+   
+    function criarHabito(){
+
+        const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", newHabit, {
+            headers: {Authorization: `Bearer ${token.token}`
+            }
+          })
+      
+          promise.then(handleSuccess);
+          promise.catch(handleFailure);
+    }
+
+    function handleSuccess(response){
+        
+    }
+
+    function handleFailure(error){
+        alert(error.response.data.message);
+        setLoading(false);
+    }
 
     return (
         <>

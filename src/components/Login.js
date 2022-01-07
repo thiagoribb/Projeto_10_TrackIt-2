@@ -9,7 +9,7 @@ import Loading from './Loading';
 
 export default function Login(){
 
-    const { token, setToken } = useContext(UserContext);
+    const { setToken } = useContext(UserContext);
 
    const [loading, setLoading] = useState(false);
 

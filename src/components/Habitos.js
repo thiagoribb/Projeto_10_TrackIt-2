@@ -75,59 +75,8 @@ export default function Habitos(){
 //     );
 // }
 
-const Container = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`
 
-const Habits = styled.div`
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-`
-const Titulo = styled.h2`
-    font-family: 'Lexend Deca', sans-serif;
-    font-weight: 400;
-    font-size: 23px;
-    color: #126BA5;
-    padding-bottom: 17px;
-`
-
-const SubTitulo = styled.h3`
-    font-family: 'Lexend Deca', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 28px;
-`
-
-const Plus = styled.button`
-    font-family: 'Lexend Deca', sans-serif;
-    width: 40px;
-    height: 35px;
-    background-color: #52B6FF;
-    color: #fff;
-    font-size: 27px;
-    border: none;
-    border-radius: 4.6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;    
-`
-
-const Body = styled.div`
-    width: 375px;
-    height: 100vh;
-    background-color: #E5E5E5;
-    padding-top: 98px;
-    padding-bottom: 70px;
-    padding-left: 17px;
-    padding-right: 18px;
-`
 
 const NovoHabito = styled.div`
     width: 340px;
@@ -143,13 +92,13 @@ const Input = styled.input`
     height: 45px;
     border-radius: 5px;
     border: 1px solid #D4D4D4;
+    padding-left: 10px;
+    font-size: 20px;
+    font-weight: 400;
     outline: 0;
 
     ::placeholder{
         color: #DBDBDB;
-        padding-left: 10px;
-        font-size: 20px;
-        font-weight: 400;
     }
 `
 

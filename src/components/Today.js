@@ -13,8 +13,6 @@ export default function Today(){
 
     const [colorCheck, setColorCheck] = useState("#EBEBEB");
 
-    const [habit, setHabit] = useState({});
-
     useEffect(() => {
 		const promess = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits");
 		promess.then(response => {setHabit(response.data)});

@@ -13,10 +13,10 @@ export default function Today(){
 
     const [colorCheck, setColorCheck] = useState("#EBEBEB");
 
-    useEffect(() => {
-		const promess = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits");
-		promess.then(response => {setHabit(response.data)});
-	}, []);
+    // useEffect(() => {
+	// 	const promess = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits");
+	// 	promess.then(response => {setHabit(response.data)});
+	// }, []);
 
 
     return (
@@ -94,6 +94,7 @@ const Habito = styled.p`
     font-weight: 400;
     font-size: 20px;
     color: #666666;
+    padding-bottom: 6px;
 `
 
 const P = styled.p`
@@ -101,6 +102,7 @@ const P = styled.p`
     font-weight: 400;
     font-size: 13px;
     color: #666666;
+    padding-bottom: 2px;
 `
 
 const Check = styled.button`

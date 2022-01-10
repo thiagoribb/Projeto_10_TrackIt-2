@@ -1,42 +1,57 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import UserContext from '../contexts/UserContext';
 import styled from "styled-components";
 import Loading from "./Loading";
+import axios from "axios";
 
 export default function AddHabit(){
 
+    const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
+
+    const { token, setToken } = useContext(UserContext);
     const [colorLetter, setcolorLetter] = useState('#DBDBDB');
     const [colorButton, setcolorButton] = useState('#fff');
     const [loading, setLoading] = useState(false);    
     const [showDays, setShowDays] = useState(weekDays);
-    const {habitName, setHabitName} = useState('');
+    const [habitName, setHabitName] = useState('');
+    const [days, setDays] = useState([1, 3, 5]);
 
-    const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
     function selectDay(){
         setcolorLetter('#fff');
         setcolorButton('#DBDBDB');
     }
 
+    // function handleForm(){
+    //     setForm(!form);
+    // }
 
-    function handleHabit() {
+    function handleHabit(e) {
+        e.preventDefault();
     
         setLoading(true);
 
         const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", {
-          name: habitName,
-          days
+            name: habitName,
+            days: days
+        }, {
+            headers:{
+            Authorization: `Bearer ${token}`
+            }
         });
     
         promise.then(handleSuccess);
         promise.catch(handleFailure);
+
     }
 
     function handleSuccess(response){
+        setHabitName('');
         setToken(response.data);
     }
 
     function handleFailure(error){
-        
+        setHabitName('');
         alert(error.response.data.message);
         setLoading(false);
     }
@@ -44,21 +59,21 @@ export default function AddHabit(){
 
     return (
         <NovoHabito>
-            <Input type="text" placeholder="nome do hábito" handleLoading={loading} onChange={e => e.target.value}></Input>
-            <Week>
-                {showDays.map(weekDays => 
-                <WeekDay 
-                letter={colorLetter} 
-                button={colorButton} 
-                onClick={selectDay}>{weekDays}
-                </WeekDay>
-                )}
-            </Week>
-            <CreateHabit>
-                <Cancelar handleLoading={loading}>Cancelar</Cancelar>
-                <Salvar onClick={() => setLoading(true)} handleLoading={loading}>{loading ? <Loading /> : "Salvar"}</Salvar>
-            </CreateHabit>
-        </NovoHabito>  
+        <Input type="text" placeholder="nome do hábito" handleLoading={loading} onChange={e => e.target.value}></Input>
+        <Week>
+            {showDays.map(weekDays => 
+            <WeekDay 
+            letter={colorLetter} 
+            button={colorButton} 
+            onClick={selectDay}>{weekDays}
+            </WeekDay>
+            )}
+        </Week>
+        <CreateHabit>
+            <Cancelar handleLoading={loading}>Cancelar</Cancelar>
+            <Salvar onClick={handleHabit} handleLoading={loading}>{loading ? <Loading /> : "Salvar"}</Salvar>
+        </CreateHabit>
+    </NovoHabito>  
     );
 }
 

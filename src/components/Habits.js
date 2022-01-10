@@ -14,8 +14,6 @@ export default function Habits(){
           }
     }
 
-
-
     return (
         <Container>
             <Header/>
@@ -25,7 +23,7 @@ export default function Habits(){
                     <Plus onClick={showForm}>+</Plus>
                 </Habitos>
 
-                {form && <AddHabit/>}
+                {form && <AddHabit />}
 
                 <SubTitulo>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</SubTitulo>
             </Body>
@@ -33,7 +31,6 @@ export default function Habits(){
         </Container>
     );
 }
-
 
 const Container = styled.div`
     display: flex;

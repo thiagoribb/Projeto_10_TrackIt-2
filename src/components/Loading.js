@@ -6,7 +6,3 @@ export default function Loading(){
         <Loader type="ThreeDots" color="#FFFFFF" height={50} width={50} />
     );
 }
-
-
-
-   
